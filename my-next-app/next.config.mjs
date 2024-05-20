@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    reactStrictMode: true,
+    env: {
+      NEXT_PUBLIC_DIRECTORY_PATH: process.env.NEXT_PUBLIC_DIRECTORY_PATH,
+    },
+  };
+  
+  module.exports = nextConfig;
+  
