@@ -1,19 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 export default function DirectoryPage() {
   const [directoryPath, setDirectoryPath] = useState<string>('');
-  const router = useRouter();
-  const { directory } = router.query;
+  const pathname = usePathname();
 
   useEffect(() => {
-    setDirectoryPath(process.env.NEXT_PUBLIC_DIRECTORY_PATH || '');
+    const envDirectoryPath = process.env.NEXT_PUBLIC_DIRECTORY_PATH || '';
+    setDirectoryPath(envDirectoryPath);
   }, []);
 
-  // Check if the directory path matches the environment variable
-  if (directory !== directoryPath) {
+  // Check if the pathname matches the environment variable
+  if (pathname !== `/${directoryPath}`) {
     return <div>404 - Page Not Found</div>;
   }
 
